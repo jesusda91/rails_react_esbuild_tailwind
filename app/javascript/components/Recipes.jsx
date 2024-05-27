@@ -20,14 +20,14 @@ const Recipes = () => {
 
   const allRecipes = recipes.map((recipe, index) => (
     <div key={index} className="col-md-6 col-lg-4">
-      <div className="card mb-4">
+      <div className="bg-white shadow-md rounded-lg overflow-hidden mb-4">
         <img
           src={recipe.image}
           className="card-img-top"
           alt={`${recipe.name} image`}
         />
-        <div className="card-body">
-          <h5 className="card-title">{recipe.name}</h5>
+        <div className="p-4">
+          <h5 className="text-xl font-semibold mb-2">{recipe.name}</h5>
           <Link to={`/recipe/${recipe.id}`} className="btn custom-button">
             View Recipe
           </Link>
@@ -36,19 +36,22 @@ const Recipes = () => {
     </div>
   ));
   const noRecipe = (
-    <div className="vw-100 vh-50 d-flex align-items-center justify-content-center">
+    <div className="w-full h-1/2 flex items-center justify-center">
       <h4>
-        No recipes yet. Why not <Link to="/new_recipe">create one</Link>
+        No recipes yet. Why not{" "}
+        <Link to="/new_recipe" className="text-blue-500 hover:underline">
+          create one
+        </Link>
       </h4>
     </div>
   );
 
   return (
     <>
-      <section className="jumbotron jumbotron-fluid text-center">
-        <div className="container py-5">
-          <h1 className="display-4">Recipes for every occasion</h1>
-          <p className="lead text-muted">
+      <section className="bg-gray-100 text-center py-8">
+        <div className="container mx-auto">
+          <h1 className="text-4xl font-bold">Recipes for every occasion</h1>
+          <p className="text-lg text-gray-600 mt-4">
             We’ve pulled together our most popular recipes, our latest
             additions, and our editor’s picks, so there’s sure to be something
             tempting for you to try.
@@ -56,16 +59,22 @@ const Recipes = () => {
         </div>
       </section>
       <div className="py-5">
-        <main className="container">
-          <div className="text-end mb-3">
-            <Link to="/recipe" className="btn custom-button">
+        <main className="container mx-auto">
+          <div className="text-right mb-3">
+            <Link
+              to="/recipe"
+              className="btn bg-blue-500 text-white py-2 px-4 rounded-lg"
+            >
               Create New Recipe
             </Link>
           </div>
-          <div className="row">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {recipes.length > 0 ? allRecipes : noRecipe}
           </div>
-          <Link to="/" className="btn btn-link">
+          <Link
+            to="/"
+            className="text-blue-500 hover:underline mt-4 inline-block"
+          >
             Home
           </Link>
         </main>
